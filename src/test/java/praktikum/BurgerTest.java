@@ -20,6 +20,9 @@ public class BurgerTest {
     @Mock
     private Ingredient ingredient;
 
+    @Mock
+    private Ingredient secondIngredient;
+
     @Before
     public void setUp() {
         burger = new Burger();
@@ -38,5 +41,15 @@ public class BurgerTest {
 
         assertEquals(1, burger.ingredients.size());
         assertSame(ingredient, burger.ingredients.get(0));
+    }
+    @Test
+    public void removeIngredientRemovesIngredientByIndex() {
+        burger.addIngredient(ingredient);
+        burger.addIngredient(secondIngredient);
+
+        burger.removeIngredient(0);
+
+        assertEquals(1, burger.ingredients.size());
+        assertSame(secondIngredient, burger.ingredients.get(0));
     }
 }

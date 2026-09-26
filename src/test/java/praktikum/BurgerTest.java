@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -15,6 +16,9 @@ public class BurgerTest {
 
     @Mock
     private Bun bun;
+
+    @Mock
+    private Ingredient ingredient;
 
     @Before
     public void setUp() {
@@ -26,5 +30,13 @@ public class BurgerTest {
         burger.setBuns(bun);
 
         assertSame(bun, burger.bun);
+    }
+
+    @Test
+    public void addIngredientAddsIngredient() {
+        burger.addIngredient(ingredient);
+
+        assertEquals(1, burger.ingredients.size());
+        assertSame(ingredient, burger.ingredients.get(0));
     }
 }

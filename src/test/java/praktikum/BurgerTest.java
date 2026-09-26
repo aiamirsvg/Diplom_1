@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import static org.mockito.Mockito.when;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -61,5 +62,19 @@ public class BurgerTest {
 
         assertSame(secondIngredient, burger.ingredients.get(0));
         assertSame(ingredient, burger.ingredients.get(1));
+    }
+    @Test
+    public void getPriceReturnsCorrectPrice() {
+        burger.setBuns(bun);
+        burger.addIngredient(ingredient);
+        burger.addIngredient(secondIngredient);
+
+        when(bun.getPrice()).thenReturn(100.0f);
+        when(ingredient.getPrice()).thenReturn(25.5f);
+        when(secondIngredient.getPrice()).thenReturn(30.0f);
+
+        float actualPrice = burger.getPrice();
+
+        assertEquals(255.5f, actualPrice, 0.001f);
     }
 }

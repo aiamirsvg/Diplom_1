@@ -52,4 +52,14 @@ public class BurgerTest {
         assertEquals(1, burger.ingredients.size());
         assertSame(secondIngredient, burger.ingredients.get(0));
     }
+    @Test
+    public void moveIngredientMovesIngredientToNewIndex() {
+        burger.addIngredient(ingredient);
+        burger.addIngredient(secondIngredient);
+
+        burger.moveIngredient(0, 1);
+
+        assertSame(secondIngredient, burger.ingredients.get(0));
+        assertSame(ingredient, burger.ingredients.get(1));
+    }
 }

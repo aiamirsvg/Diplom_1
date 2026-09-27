@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import static org.mockito.Mockito.when;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -40,8 +42,10 @@ public class BurgerTest {
     public void addIngredientAddsIngredient() {
         burger.addIngredient(ingredient);
 
-        assertEquals(1, burger.ingredients.size());
-        assertSame(ingredient, burger.ingredients.get(0));
+        assertEquals(
+                Collections.singletonList(ingredient),
+                burger.ingredients
+        );
     }
     @Test
     public void removeIngredientRemovesIngredientByIndex() {
@@ -50,8 +54,10 @@ public class BurgerTest {
 
         burger.removeIngredient(0);
 
-        assertEquals(1, burger.ingredients.size());
-        assertSame(secondIngredient, burger.ingredients.get(0));
+        assertEquals(
+                Collections.singletonList(secondIngredient),
+                burger.ingredients
+        );
     }
     @Test
     public void moveIngredientMovesIngredientToNewIndex() {
@@ -60,8 +66,10 @@ public class BurgerTest {
 
         burger.moveIngredient(0, 1);
 
-        assertSame(secondIngredient, burger.ingredients.get(0));
-        assertSame(ingredient, burger.ingredients.get(1));
+        assertEquals(
+                Arrays.asList(secondIngredient, ingredient),
+                burger.ingredients
+        );
     }
     @Test
     public void getPriceReturnsCorrectPrice() {
